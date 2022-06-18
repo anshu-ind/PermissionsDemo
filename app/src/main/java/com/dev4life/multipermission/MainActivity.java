@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
                         @RequiresApi(api = Build.VERSION_CODES.M)
                         @Override
                         public void onActivityResult(Map<String, Boolean> result) {
-                            ArrayList<Boolean> list = new ArrayList<>(result.values());
+                            ArrayList<String> list = new ArrayList<>(result.keySet());
                             permissionsList = new ArrayList<>();
                             permissionsCount = 0;
                             for (int i = 0; i < list.size(); i++) {
-                                if (shouldShowRequestPermissionRationale(permissionsStr[i])) {
-                                    permissionsList.add(permissionsStr[i]);
-                                } else if (!hasPermission(MainActivity.this, permissionsStr[i])) {
+                                if (shouldShowRequestPermissionRationale(list.get(i))) {
+                                    permissionsList.add(list.get(i));
+                                } else if (!hasPermission(MainActivity.this, list.get(i))) {
                                     permissionsCount++;
                                 }
                             }
